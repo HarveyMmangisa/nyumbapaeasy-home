@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { mockProperties } from "@/data/mockProperties";
+import { VerifiedBadge } from "@/components/ui/verified-badge";
+import { mockProperties, mockAgents } from "@/data/mockProperties";
 
 const amenities = [
   { name: "Parking", icon: Car },
@@ -22,6 +23,7 @@ const amenities = [
 export default function PropertyDetail() {
   const { id } = useParams();
   const property = mockProperties.find((p) => p.id === id);
+  const agent = property?.agentId ? mockAgents[property.agentId] : null;
 
   if (!property) {
     return (
@@ -94,7 +96,7 @@ export default function PropertyDetail() {
               <div>
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <div>
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-2 mb-2 flex-wrap">
                       {property.featured && (
                         <Badge className="hero-gradient text-primary-foreground border-0">Featured</Badge>
                       )}
@@ -102,6 +104,12 @@ export default function PropertyDetail() {
                         <Badge variant="secondary">New</Badge>
                       )}
                       <Badge variant="outline" className="capitalize">{property.category}</Badge>
+                      {property.verified && (
+                        <Badge variant="secondary" className="gap-1 bg-accent/10 text-accent border-accent/20">
+                          <VerifiedBadge size="sm" />
+                          Verified Listing
+                        </Badge>
+                      )}
                     </div>
                     <h1 className="font-display text-3xl font-bold text-foreground">
                       {property.title}
@@ -213,11 +221,30 @@ export default function PropertyDetail() {
                     <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                       <User className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <p className="font-semibold text-foreground">James Mwangi</p>
-                      <p className="text-sm text-muted-foreground">Premier Properties Ltd</p>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <p className="font-semibold text-foreground">
+                          {agent?.name || "Property Agent"}
+                        </p>
+                        {agent?.verified && <VerifiedBadge size="sm" />}
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        {agent?.company || "Real Estate Agency"}
+                      </p>
                     </div>
                   </div>
+
+                  {agent?.verified && (
+                    <div className="bg-accent/10 border border-accent/20 rounded-lg p-3">
+                      <div className="flex items-center gap-2 text-accent">
+                        <VerifiedBadge size="sm" showLabel />
+                        <span className="text-xs">Agent</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        This agent has verified their identity and business documents.
+                      </p>
+                    </div>
+                  )}
 
                   <Separator />
 
