@@ -38,14 +38,13 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
   };
 
   return (
-    <Link
-      to={`/property/${property.id}`}
-      className={cn(
-        "group block bg-card rounded-2xl overflow-hidden card-shadow transition-all duration-300",
-        "hover:card-shadow-hover hover:-translate-y-1",
-        className
-      )}
-    >
+     <Link
+       to={`/property/${property.id}`}
+       className={cn(
+         "group block bg-card rounded-2xl overflow-hidden card-shadow transition-all duration-300 hover-lift",
+         className
+       )}
+     >
       {/* Image Container */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
@@ -73,18 +72,18 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
           )}
         </div>
 
-        {/* Favorite Button */}
-        <Button
-          size="icon"
-          variant="ghost"
-          className="absolute top-4 right-4 h-9 w-9 rounded-full bg-card/80 backdrop-blur-sm hover:bg-card hover:text-destructive"
-          onClick={(e) => {
-            e.preventDefault();
-            // Handle favorite
-          }}
-        >
-          <Heart className="h-4 w-4" />
-        </Button>
+         {/* Favorite Button */}
+         <Button
+           size="icon"
+           variant="ghost"
+           className="absolute top-4 right-4 h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-card/80 backdrop-blur-sm hover:bg-card hover:text-destructive transition-all duration-200 hover:scale-110"
+           onClick={(e) => {
+             e.preventDefault();
+             // Handle favorite
+           }}
+         >
+           <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-colors duration-200" />
+         </Button>
 
         {/* Price Tag */}
         <div className="absolute bottom-4 left-4">
@@ -99,12 +98,12 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="p-5">
-        <div className="flex items-start justify-between gap-2 mb-3">
-          <h3 className="font-display font-semibold text-lg text-foreground line-clamp-1 group-hover:text-primary transition-colors">
-            {property.title}
-          </h3>
+       {/* Content */}
+       <div className="p-4 sm:p-5">
+         <div className="flex items-start justify-between gap-2 mb-3">
+           <h3 className="font-display font-semibold text-base sm:text-lg text-foreground line-clamp-1 group-hover:text-primary transition-colors">
+             {property.title}
+           </h3>
           {property.rating && (
             <div className="flex items-center gap-1 text-sm">
               <Star className="h-4 w-4 fill-primary text-primary" />
@@ -118,20 +117,20 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
           <span className="text-sm line-clamp-1">{property.location}</span>
         </div>
 
-        <div className="flex items-center gap-4 pt-4 border-t border-border">
-          <div className="flex items-center gap-1.5 text-muted-foreground">
-            <BedDouble className="h-4 w-4" />
-            <span className="text-sm">{property.bedrooms} Beds</span>
-          </div>
-          <div className="flex items-center gap-1.5 text-muted-foreground">
-            <Bath className="h-4 w-4" />
-            <span className="text-sm">{property.bathrooms} Baths</span>
-          </div>
-          <div className="flex items-center gap-1.5 text-muted-foreground">
-            <Square className="h-4 w-4" />
-            <span className="text-sm">{property.area} sq.ft</span>
-          </div>
-        </div>
+         <div className="flex items-center gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-border">
+           <div className="flex items-center gap-1 text-muted-foreground">
+             <BedDouble className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+             <span className="text-xs sm:text-sm">{property.bedrooms} Beds</span>
+           </div>
+           <div className="flex items-center gap-1 text-muted-foreground">
+             <Bath className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+             <span className="text-xs sm:text-sm">{property.bathrooms} Baths</span>
+           </div>
+           <div className="flex items-center gap-1 text-muted-foreground">
+             <Square className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+             <span className="text-xs sm:text-sm">{property.area} sq.ft</span>
+           </div>
+         </div>
       </div>
     </Link>
   );

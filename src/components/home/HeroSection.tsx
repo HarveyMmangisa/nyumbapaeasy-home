@@ -46,43 +46,43 @@ export function HeroSection() {
           </div>
 
           {/* Heading */}
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 animate-slide-up">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4 sm:mb-6 animate-slide-up">
             Discover Your Dream Home with{" "}
             <span className="relative">
               NyumbaPaEasy
-              <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
+              <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
                 <path d="M2 10C50 4 100 2 150 4C200 6 250 4 298 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="text-primary-foreground/40"/>
               </svg>
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-primary-foreground/80 mb-10 animate-slide-up" style={{ animationDelay: "0.1s" }}>
+          <p className="text-base sm:text-lg md:text-xl text-primary-foreground/80 mb-6 sm:mb-10 animate-slide-up" style={{ animationDelay: "0.1s" }}>
             Browse thousands of properties for sale and rent across Malawi. 
             Find residential homes, apartments, lodges, and commercial spaces.
           </p>
 
           {/* Search Card */}
-          <div className="glass-card rounded-2xl p-6 card-shadow animate-scale-in" style={{ animationDelay: "0.2s" }}>
+          <div className="glass-card rounded-2xl p-4 sm:p-6 card-shadow animate-scale-in" style={{ animationDelay: "0.2s" }}>
             {/* Listing Type Toggle */}
-            <div className="flex gap-2 mb-6">
+            <div className="flex gap-2 mb-4 sm:mb-6">
               <Button
                 variant={listingType === "rent" ? "default" : "outline"}
                 onClick={() => setListingType("rent")}
-                className="flex-1"
+                className="flex-1 text-sm sm:text-base"
               >
                 For Rent
               </Button>
               <Button
                 variant={listingType === "sale" ? "default" : "outline"}
                 onClick={() => setListingType("sale")}
-                className="flex-1"
+                className="flex-1 text-sm sm:text-base"
               >
                 For Sale
               </Button>
             </div>
 
             {/* Search Inputs */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               <div className="relative md:col-span-1">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -126,19 +126,19 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mt-12 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            {[
-              { value: "10K+", label: "Properties Listed" },
-              { value: "5K+", label: "Happy Customers" },
-              { value: "200+", label: "Verified Agents" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="font-display text-3xl font-bold text-primary-foreground">{stat.value}</p>
-                <p className="text-sm text-primary-foreground/70">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+           {/* Stats */}
+           <div className="grid grid-cols-3 gap-4 sm:gap-8 mt-8 sm:mt-12 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+             {[
+               { value: "10K+", label: "Properties Listed" },
+               { value: "5K+", label: "Happy Customers" },
+               { value: "200+", label: "Verified Agents" },
+             ].map((stat) => (
+               <div key={stat.label} className="text-center">
+                 <p className="font-display text-2xl sm:text-3xl font-bold text-primary-foreground">{stat.value}</p>
+                 <p className="text-xs sm:text-sm text-primary-foreground/70">{stat.label}</p>
+               </div>
+             ))}
+           </div>
         </div>
       </div>
     </section>

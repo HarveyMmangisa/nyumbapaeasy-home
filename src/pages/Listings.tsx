@@ -48,8 +48,8 @@ export default function Listings() {
       <main className="pt-20">
         {/* Search Header */}
         <div className="bg-card border-b border-border sticky top-16 z-40">
-          <div className="container py-4">
-            <div className="flex flex-col lg:flex-row gap-4">
+          <div className="container py-3 sm:py-4">
+            <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row">
               {/* Search Input */}
               <div className="relative flex-1">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -69,33 +69,33 @@ export default function Listings() {
               </div>
 
               {/* Quick Filters */}
-              <div className="flex gap-2 flex-wrap">
-                <Select
-                  value={activeFilters.type}
-                  onValueChange={(value) => {
-                    searchParams.set("type", value);
-                    setSearchParams(searchParams);
-                  }}
-                >
-                  <SelectTrigger className="w-32">
-                    <SelectValue placeholder="Type" />
-                  </SelectTrigger>
+              <div className="flex gap-1.5 sm:gap-2 flex-wrap">
+                 <Select
+                   value={activeFilters.type}
+                   onValueChange={(value) => {
+                     searchParams.set("type", value);
+                     setSearchParams(searchParams);
+                   }}
+                 >
+                   <SelectTrigger className="w-28 sm:w-32">
+                     <SelectValue placeholder="Type" />
+                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="rent">For Rent</SelectItem>
                     <SelectItem value="sale">For Sale</SelectItem>
                   </SelectContent>
                 </Select>
 
-                <Select
-                  value={activeFilters.category}
-                  onValueChange={(value) => {
-                    searchParams.set("category", value);
-                    setSearchParams(searchParams);
-                  }}
-                >
-                  <SelectTrigger className="w-36">
-                    <SelectValue placeholder="Category" />
-                  </SelectTrigger>
+                 <Select
+                   value={activeFilters.category}
+                   onValueChange={(value) => {
+                     searchParams.set("category", value);
+                     setSearchParams(searchParams);
+                   }}
+                 >
+                   <SelectTrigger className="w-32 sm:w-36">
+                     <SelectValue placeholder="Category" />
+                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="residential">Residential</SelectItem>
                     <SelectItem value="apartment">Apartment</SelectItem>
@@ -104,16 +104,16 @@ export default function Listings() {
                   </SelectContent>
                 </Select>
 
-                <Select
-                  value={activeFilters.bedrooms}
-                  onValueChange={(value) => {
-                    searchParams.set("bedrooms", value);
-                    setSearchParams(searchParams);
-                  }}
-                >
-                  <SelectTrigger className="w-32">
-                    <SelectValue placeholder="Beds" />
-                  </SelectTrigger>
+                 <Select
+                   value={activeFilters.bedrooms}
+                   onValueChange={(value) => {
+                     searchParams.set("bedrooms", value);
+                     setSearchParams(searchParams);
+                   }}
+                 >
+                   <SelectTrigger className="w-24 sm:w-32">
+                     <SelectValue placeholder="Beds" />
+                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="1">1 Bed</SelectItem>
                     <SelectItem value="2">2 Beds</SelectItem>

@@ -23,14 +23,14 @@ export function Header() {
         isHome ? "bg-transparent" : "bg-card/95 backdrop-blur-md border-b border-border"
       )}
     >
-      <nav className="container flex items-center justify-between py-4">
+       <nav className="container flex items-center justify-between py-3 sm:py-4">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <div className="hero-gradient p-2 rounded-lg">
-            <Home className="h-5 w-5 text-primary-foreground" />
+          <div className="hero-gradient p-1.5 sm:p-2 rounded-lg">
+            <Home className="h-4 w-4 sm:h-5 sm:w-5 text-primary-foreground" />
           </div>
           <span className={cn(
-            "font-display font-bold text-xl",
+            "font-display font-bold text-lg sm:text-xl",
             isHome ? "text-primary-foreground" : "text-foreground"
           )}>
             NyumbaPaEasy
@@ -38,7 +38,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -54,7 +54,7 @@ export function Header() {
         </div>
 
         {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-2 sm:gap-3">
           <Button variant={isHome ? "ghost" : "outline"} size="sm" asChild
             className={cn(isHome && "text-primary-foreground hover:bg-primary-foreground/10")}
           >
@@ -72,16 +72,18 @@ export function Header() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button
+        <Button
+          variant="ghost"
+          size="icon"
           className="md:hidden p-2"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? (
-            <X className={cn("h-6 w-6", isHome ? "text-primary-foreground" : "text-foreground")} />
+            <X className={cn("h-5 w-5 sm:h-6 sm:w-6", isHome ? "text-primary-foreground" : "text-foreground")} />
           ) : (
-            <Menu className={cn("h-6 w-6", isHome ? "text-primary-foreground" : "text-foreground")} />
+            <Menu className={cn("h-5 w-5 sm:h-6 sm:w-6", isHome ? "text-primary-foreground" : "text-foreground")} />
           )}
-        </button>
+        </Button>
       </nav>
 
       {/* Mobile Menu */}
