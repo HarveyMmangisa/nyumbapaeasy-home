@@ -2,6 +2,7 @@ import { Heart, MapPin, BedDouble, Bath, Square, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { VerifiedBadge } from "@/components/ui/verified-badge";
 import { cn } from "@/lib/utils";
 
 export interface Property {
@@ -18,6 +19,8 @@ export interface Property {
   featured?: boolean;
   rating?: number;
   isNew?: boolean;
+  agentId?: string;
+  verified?: boolean;
 }
 
 interface PropertyCardProps {
@@ -61,6 +64,12 @@ export function PropertyCard({ property, className }: PropertyCardProps) {
           )}
           {property.featured && (
             <Badge className="hero-gradient text-primary-foreground border-0">Featured</Badge>
+          )}
+          {property.verified && (
+            <Badge variant="secondary" className="bg-card/90 backdrop-blur-sm gap-1 pr-2">
+              <VerifiedBadge size="sm" />
+              <span className="text-xs">Verified</span>
+            </Badge>
           )}
         </div>
 

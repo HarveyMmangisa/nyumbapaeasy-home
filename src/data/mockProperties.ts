@@ -1,5 +1,34 @@
 import { Property } from "@/components/properties/PropertyCard";
 
+export interface Agent {
+  id: string;
+  name: string;
+  company: string;
+  verified: boolean;
+  avatar?: string;
+}
+
+export const mockAgents: Record<string, Agent> = {
+  "agent-1": {
+    id: "agent-1",
+    name: "James Mwangi",
+    company: "Premier Properties Ltd",
+    verified: true,
+  },
+  "agent-2": {
+    id: "agent-2",
+    name: "Grace Banda",
+    company: "Malawi Homes Realty",
+    verified: true,
+  },
+  "agent-3": {
+    id: "agent-3",
+    name: "Peter Chirwa",
+    company: "Individual Seller",
+    verified: false,
+  },
+};
+
 export const mockProperties: Property[] = [
   {
     id: "1",
@@ -15,6 +44,8 @@ export const mockProperties: Property[] = [
     featured: true,
     rating: 4.8,
     isNew: true,
+    agentId: "agent-1",
+    verified: true,
   },
   {
     id: "2",
@@ -29,6 +60,8 @@ export const mockProperties: Property[] = [
     category: "residential",
     featured: true,
     rating: 4.9,
+    agentId: "agent-2",
+    verified: true,
   },
   {
     id: "3",
@@ -42,6 +75,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&auto=format&fit=crop",
     category: "bnb",
     rating: 4.7,
+    agentId: "agent-3",
+    verified: false,
   },
   {
     id: "4",
@@ -55,6 +90,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop",
     category: "corporate",
     isNew: true,
+    agentId: "agent-1",
+    verified: true,
   },
   {
     id: "5",
@@ -68,6 +105,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&auto=format&fit=crop",
     category: "apartment",
     rating: 4.5,
+    agentId: "agent-3",
+    verified: false,
   },
   {
     id: "6",
@@ -81,6 +120,8 @@ export const mockProperties: Property[] = [
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&auto=format&fit=crop",
     category: "residential",
     featured: true,
+    agentId: "agent-2",
+    verified: true,
   },
   {
     id: "7",
@@ -95,6 +136,8 @@ export const mockProperties: Property[] = [
     category: "bnb",
     rating: 4.9,
     featured: true,
+    agentId: "agent-1",
+    verified: true,
   },
   {
     id: "8",
@@ -109,5 +152,7 @@ export const mockProperties: Property[] = [
     category: "apartment",
     isNew: true,
     rating: 4.8,
+    agentId: "agent-2",
+    verified: true,
   },
 ];

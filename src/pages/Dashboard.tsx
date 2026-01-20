@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Home, Building2, Plus, Settings, LogOut, BarChart3, Users,
-  Eye, Heart, MessageSquare, TrendingUp, MoreVertical, Pencil, Trash2
+  Eye, Heart, MessageSquare, TrendingUp, MoreVertical, Pencil, Trash2,
+  FileCheck, AlertCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,6 +14,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { VerifiedBadge } from "@/components/ui/verified-badge";
 import { cn } from "@/lib/utils";
 import { mockProperties } from "@/data/mockProperties";
 
@@ -22,6 +24,7 @@ const sidebarItems = [
   { name: "Messages", icon: MessageSquare, href: "#messages", badge: 3 },
   { name: "Leads", icon: Users, href: "#leads" },
   { name: "Analytics", icon: TrendingUp, href: "#analytics" },
+  { name: "Verification", icon: FileCheck, href: "#verification" },
   { name: "Settings", icon: Settings, href: "#settings" },
 ];
 
@@ -35,6 +38,7 @@ const stats = [
 export default function Dashboard() {
   const [activeSection, setActiveSection] = useState("overview");
   const myProperties = mockProperties.slice(0, 4);
+  const isVerified = true; // Mock verification status
 
   return (
     <div className="min-h-screen bg-muted/30 flex">
@@ -79,8 +83,11 @@ export default function Dashboard() {
             <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
               <span className="font-semibold text-primary">JM</span>
             </div>
-            <div>
-              <p className="font-medium text-foreground text-sm">James Mwangi</p>
+            <div className="flex-1">
+              <div className="flex items-center gap-1.5">
+                <p className="font-medium text-foreground text-sm">James Mwangi</p>
+                {isVerified && <VerifiedBadge size="sm" />}
+              </div>
               <p className="text-xs text-muted-foreground">Premium Agent</p>
             </div>
           </div>
@@ -97,7 +104,15 @@ export default function Dashboard() {
         <header className="bg-card border-b border-border sticky top-0 z-10">
           <div className="flex items-center justify-between px-8 py-4">
             <div>
-              <h1 className="font-display text-2xl font-bold text-foreground">Dashboard</h1>
+              <div className="flex items-center gap-2">
+                <h1 className="font-display text-2xl font-bold text-foreground">Dashboard</h1>
+                {isVerified && (
+                  <Badge variant="secondary" className="gap-1 bg-accent/10 text-accent border-accent/20">
+                    <VerifiedBadge size="sm" />
+                    Verified Lister
+                  </Badge>
+                )}
+              </div>
               <p className="text-muted-foreground">Welcome back, James!</p>
             </div>
             <Button className="gap-2">
@@ -108,6 +123,55 @@ export default function Dashboard() {
         </header>
 
         <div className="p-8">
+          {/* Verification Status Card */}
+          {isVerified ? (
+            <Card className="mb-8 border-accent/30 bg-accent/5">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                    <VerifiedBadge size="lg" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-semibold text-foreground flex items-center gap-2">
+                      Verified Lister Status
+                      <Badge className="bg-accent text-accent-foreground">Active</Badge>
+                    </h3>
+                    <p className="text-muted-foreground text-sm mt-1">
+                      Your identity and business documents have been verified. Your listings display a verification badge,
+                      increasing trust with potential clients.
+                    </p>
+                    <div className="flex gap-2 mt-3">
+                      <Badge variant="outline" className="text-xs">ID Verified</Badge>
+                      <Badge variant="outline" className="text-xs">Business Registered</Badge>
+                      <Badge variant="outline" className="text-xs">Address Confirmed</Badge>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <Card className="mb-8 border-amber-500/30 bg-amber-500/5">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                    <AlertCircle className="h-6 w-6 text-amber-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-display font-semibold text-foreground">
+                      Get Verified to Build Trust
+                    </h3>
+                    <p className="text-muted-foreground text-sm mt-1">
+                      Verified listers get more views and inquiries. Submit your documents to get the verification badge.
+                    </p>
+                    <Button size="sm" className="mt-3">
+                      Start Verification
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {stats.map((stat, index) => (
@@ -143,19 +207,26 @@ export default function Dashboard() {
                     key={property.id}
                     className="flex items-center gap-4 p-4 bg-muted/50 rounded-xl hover:bg-muted transition-colors"
                   >
-                    <div className="h-20 w-28 rounded-lg overflow-hidden flex-shrink-0">
+                    <div className="h-20 w-28 rounded-lg overflow-hidden flex-shrink-0 relative">
                       <img
                         src={property.image}
                         alt={property.title}
                         className="w-full h-full object-cover"
                       />
+                      {property.verified && (
+                        <div className="absolute top-1 left-1 bg-card/90 backdrop-blur-sm rounded p-0.5">
+                          <VerifiedBadge size="sm" />
+                        </div>
+                      )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2">
                         <div>
-                          <h3 className="font-semibold text-foreground truncate">
-                            {property.title}
-                          </h3>
+                          <div className="flex items-center gap-2">
+                            <h3 className="font-semibold text-foreground truncate">
+                              {property.title}
+                            </h3>
+                          </div>
                           <p className="text-sm text-muted-foreground">{property.location}</p>
                         </div>
                         <Badge variant={property.priceType === "month" ? "secondary" : "default"}>
